@@ -21,10 +21,16 @@ uv tool install cqw
 ## Usage
 
 ```bash
+# Basic usage: creates tunnel with random credentials
 cqw -f localhost:8080
+... # QR code with authenticated URL, tunnel URL, credentials
+
+# Custom Basic Auth credentials
 cqw -f localhost:8080 --user admin --pass secret
-cqw -f localhost:8080 --no-qr
-cqw -f localhost:8080 -v
+
+# Direct tunnel to target (bypass proxy and authentication)
+# [Cloudflare Tunnel] -> [Target Service]
+cqw -f localhost:8080 --no-proxy
 ```
 
 ## CLI Options
@@ -36,7 +42,6 @@ cqw -f localhost:8080 -v
 | `--pass`                   | Basic auth password (default: env `CQW_PASS` or random)          |
 | `--cloudflared`            | Path to cloudflared binary (default: auto-download to cache)     |
 | `--update-cloudflared`     | Update cloudflared to latest version                             |
-| `--qr`                     | Enable QR code display (default: True)                           |
 | `--no-qr`                  | Disable QR code display                                          |
 | `-v, --verbose`            | Enable verbose logging                                           |
 | `--no-proxy`               | Disable proxy and Basic Auth (tunnel only)                       |
