@@ -72,11 +72,15 @@ def _start_cloudflared_process(
             match = url_pattern.search(msg)
             if match:
                 url = match.group(0)
+                if verbose:
+                    console.print(f"[green]Found tunnel URL: {url}[/green]")
                 break
         except json.JSONDecodeError:
             match = url_pattern.search(line)
             if match:
                 url = match.group(0)
+                if verbose:
+                    console.print(f"[green]Found tunnel URL: {url}[/green]")
                 break
 
         if "error" in line.lower():
